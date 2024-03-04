@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct ModalView: View {
+    
+    @Binding var isPresented: Bool
+    
     var body: some View {
         ZStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            VStack{
+                Text("Usuario: ")
+                Button("Cerrar"){
+                    isPresented = false
+                }
+            }
         }
     }
 }
 
 #Preview {
-    ModalView()
+    ModalView(isPresented: .constant(true))
 }

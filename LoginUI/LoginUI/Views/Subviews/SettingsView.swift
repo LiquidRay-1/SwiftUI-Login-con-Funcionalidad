@@ -11,7 +11,7 @@ struct SettingsView: View {
     var body: some View {
         VStack{
             Text("Nombre de usuario: ")
-                .padding(50)
+                .padding(20)
             Text("Nuevo nombre de Usuario:")
             TextField("Nombre de usuario", text:
                     .constant(""))

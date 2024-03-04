@@ -37,6 +37,7 @@ struct LoginView: View {
                         .frame(width: 300, height: 50)
                         .background(.bar)
                         .clipShape(.buttonBorder)
+                        
                 
                 HStack{
                     Toggle(isOn: .constant(false)) {
@@ -49,7 +50,11 @@ struct LoginView: View {
                 }.padding(5)
                 
                 Button("Login") {
-                    
+                    if (1 == 1) {
+                        
+                    }else{
+                        
+                    }
                 }
                 .padding(.leading, 30)
                 .padding(.trailing, 30)

@@ -14,6 +14,7 @@
 		3DFE4FD52B965C0400C1CF27 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE4FD42B965C0400C1CF27 /* UserView.swift */; };
 		3DFE4FD72B965C3000C1CF27 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE4FD62B965C3000C1CF27 /* SettingsView.swift */; };
 		3DFE4FDA2B9660B800C1CF27 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE4FD92B9660B800C1CF27 /* ModalView.swift */; };
+		3DFE4FDC2B9662F900C1CF27 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE4FDB2B9662F900C1CF27 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		3DFE4FD42B965C0400C1CF27 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		3DFE4FD62B965C3000C1CF27 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3DFE4FD92B9660B800C1CF27 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		3DFE4FDB2B9662F900C1CF27 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +79,20 @@
 			isa = PBXGroup;
 			children = (
 				3D4DF8462B7E9CBE00FA2970 /* ContentView.swift */,
+				3DFE4FDD2B96636100C1CF27 /* Subviews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3DFE4FDD2B96636100C1CF27 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
 				3DFE4FD42B965C0400C1CF27 /* UserView.swift */,
 				3DFE4FD62B965C3000C1CF27 /* SettingsView.swift */,
 				3DFE4FD92B9660B800C1CF27 /* ModalView.swift */,
+				3DFE4FDB2B9662F900C1CF27 /* LoginView.swift */,
 			);
-			path = Views;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFE4FDC2B9662F900C1CF27 /* LoginView.swift in Sources */,
 				3DFE4FD52B965C0400C1CF27 /* UserView.swift in Sources */,
 				3DFE4FD72B965C3000C1CF27 /* SettingsView.swift in Sources */,
 				3D4DF8472B7E9CBE00FA2970 /* ContentView.swift in Sources */,

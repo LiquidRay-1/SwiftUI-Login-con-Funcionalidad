@@ -7,7 +7,22 @@
 
 import SwiftUI
 
+class UserData: ObservableObject{
+    @Published var userName: String = ""
+    @Published var userPassword: String = ""
+}
+
 struct LoginView: View {
+    
+    @StateObject var userData = UserData()
+    
+    @State var officialUsername = "user"
+    @State var officalPassword = "pass"
+    
+    @State var rememberPassword: Bool = false
+    
+    @State var errorAlert = false
+    
     var body: some View {
         ZStack {
             Color
@@ -40,7 +55,7 @@ struct LoginView: View {
                         
                 
                 HStack{
-                    Toggle(isOn: .constant(false)) {
+                    Toggle(isOn: $rememberPassword) {
                         
                     }
                     .frame(width: 50)
@@ -50,11 +65,7 @@ struct LoginView: View {
                 }.padding(5)
                 
                 Button("Login") {
-                    if (1 == 1) {
-                        
-                    }else{
-                        
-                    }
+                    permitirInicio()
                 }
                 .padding(.leading, 30)
                 .padding(.trailing, 30)
@@ -68,6 +79,16 @@ struct LoginView: View {
                     .frame(height: 50)
                     .padding(.trailing, -100)
             }
+        }
+    }
+    
+    func permitirInicio(){
+        if (userName != officialUsername){
+            
+        }else if (userPassword != officalPassword){
+            
+        }else{
+            UserView()
         }
     }
 }

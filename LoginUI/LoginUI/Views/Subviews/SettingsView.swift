@@ -8,26 +8,32 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @State private var rememberPassword = false
+    
     var body: some View {
-        VStack{
+        Form{
             Text("Nombre de usuario: ")
-                .padding(20)
-            Text("Nuevo nombre de Usuario:")
-            TextField("Nombre de usuario", text:
-                    .constant(""))
-                    .frame(width: 200, height: 30)
-                    .background(.bar)
-                    .clipShape(.buttonBorder)
-            HStack{
-                Toggle(isOn: .constant(false)) {
-                    
-                }
-                .frame(width: 50)
-                .toggleStyle(SwitchToggleStyle(tint: .cyan))
-                
-                Text("Recordar contraseña")
+            Section{
+                Text("Nuevo nombre de Usuario:")
+                TextField("Nombre de usuario", text:
+                        .constant(""))
+                .frame(width: 200, height: 30)
+                .background(.bar)
+                .clipShape(.buttonBorder)
             }
-            .padding()
+            Section{
+                HStack{
+                    Toggle(isOn: $rememberPassword) {
+                        
+                    }
+                    .frame(width: 50)
+                    .toggleStyle(SwitchToggleStyle(tint: .cyan))
+                    .padding(10)
+                    
+                    Text("Recordar contraseña")
+                }
+            }
             Text("Nueva contraseña:")
             TextField("Nueva contraseña", text:
                     .constant(""))

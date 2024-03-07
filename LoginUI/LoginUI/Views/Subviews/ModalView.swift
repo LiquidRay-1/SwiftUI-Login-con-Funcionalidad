@@ -10,6 +10,7 @@ import SwiftUI
 struct ModalView: View {
     
     @Binding var isPresented: Bool
+    @Binding var officialUserName: String
     
     var body: some View {
         ZStack{
@@ -24,5 +25,5 @@ struct ModalView: View {
 }
 
 #Preview {
-    ModalView(isPresented: .constant(true))
+    ModalView(isPresented: .constant(true), officialUserName: .constant("User"))
 }

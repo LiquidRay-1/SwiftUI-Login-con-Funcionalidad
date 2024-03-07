@@ -11,6 +11,8 @@ struct UserView: View {
     
     @State var isPresented: Bool = false
     @State var selected = false
+    @Binding var officialUserName: String
+    
     var body: some View {
         VStack{
             Image("gojo")
@@ -27,12 +29,12 @@ struct UserView: View {
                 isPresented = true
             }
         }
-        .sheet(isPresented: $isPresented, onDismiss: { isPresented = false }, content: { ModalView(isPresented: $isPresented)
+        .sheet(isPresented: $isPresented, onDismiss: { isPresented = false }, content: { ModalView(isPresented: $isPresented, officialUserName: $officialUserName)
             .presentationDetents([.medium])
         })
     }
 }
 
 #Preview {
-    UserView()
+    UserView(officialUserName: .constant("User"))
 }

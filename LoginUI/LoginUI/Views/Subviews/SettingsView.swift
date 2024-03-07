@@ -10,10 +10,11 @@ import SwiftUI
 struct SettingsView: View {
     
     @State private var rememberPassword = false
+    @Binding var officialUserName: String
     
     var body: some View {
         Form{
-            Text("Nombre de usuario: ")
+            Text("Nombre de usuario: \($officialUserName)")
             Section{
                 Text("Nuevo nombre de Usuario:")
                 TextField("Nombre de usuario", text:
@@ -45,5 +46,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(officialUserName: .constant("User"))
 }

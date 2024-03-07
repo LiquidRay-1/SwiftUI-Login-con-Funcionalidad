@@ -33,7 +33,7 @@ struct LoginView: View {
     var body: some View {
         ZStack {
             Color
-                .cyan
+                .black
                 .ignoresSafeArea(.all)
             
             Circle()
@@ -77,11 +77,11 @@ struct LoginView: View {
                 .padding(.leading, 30)
                 .padding(.trailing, 30)
                 .padding()
-                .background(.cyan)
+                .background(.black)
                 .foregroundStyle(.white)
                 .clipShape(.buttonBorder)
                 .fullScreenCover(isPresented: $isShowingUserView) {
-                    UserView()
+                    UserView(officialUserName: $officialUsername)
                 }
                 
                 Text("Recuperar Contraseña")

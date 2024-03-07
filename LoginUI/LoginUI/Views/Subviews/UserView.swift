@@ -37,4 +37,5 @@ struct UserView: View {
 
 #Preview {
     UserView(officialUserName: .constant("User"))
+        .environmentObject(UserData())
 }

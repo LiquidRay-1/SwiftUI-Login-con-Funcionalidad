@@ -47,4 +47,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView(officialUserName: .constant("User"))
+        .environmentObject(UserData())
 }

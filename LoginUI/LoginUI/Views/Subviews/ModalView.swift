@@ -26,4 +26,5 @@ struct ModalView: View {
 
 #Preview {
     ModalView(isPresented: .constant(true), officialUserName: .constant("User"))
+        .environmentObject(UserData())
 }

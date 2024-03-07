@@ -14,14 +14,21 @@ class UserData: ObservableObject{
 
 struct LoginView: View {
     
+    //Variable de acceso a las propiedades de UserData
     @StateObject var userData = UserData()
     
-    @State var officialUsername = "user"
-    @State var officalPassword = "pass"
+    //Variables de comprobación de credenciales
+    @State var officialUsername: String = "User"
+    @State var officialPassword: String = "Pass"
     
+    //Variable de recuerdo de contraseña
     @State var rememberPassword: Bool = false
     
+    //Variable de verificación de aparición de alert
     @State var errorAlert = false
+    
+    //Variable le controladora de la aparición de UserView()
+    @State var isShowingUserView = false
     
     var body: some View {
         ZStack {
@@ -41,14 +48,12 @@ struct LoginView: View {
                 Text("Iniciar sesión")
                     .font(.largeTitle)
                 
-                TextField("Nombre de usuario", text:
-                        .constant(""))
+                TextField("Nombre de usuario", text: $userData.userName)
                         .frame(width: 300, height: 50)
                         .background(.bar)
                         .clipShape(.buttonBorder)
                 
-                SecureField("Contraseña", text:
-                        .constant(""))
+                SecureField("Contraseña", text: $userData.userPassword)
                         .frame(width: 300, height: 50)
                         .background(.bar)
                         .clipShape(.buttonBorder)
@@ -65,7 +70,9 @@ struct LoginView: View {
                 }.padding(5)
                 
                 Button("Login") {
-                    permitirInicio()
+                    if permitirInicio() {
+                        self.isShowingUserView = true
+                    }
                 }
                 .padding(.leading, 30)
                 .padding(.trailing, 30)
@@ -73,6 +80,9 @@ struct LoginView: View {
                 .background(.cyan)
                 .foregroundStyle(.white)
                 .clipShape(.buttonBorder)
+                .fullScreenCover(isPresented: $isShowingUserView) {
+                    UserView()
+                }
                 
                 Text("Recuperar Contraseña")
                     .foregroundColor(.cyan)
@@ -80,15 +90,17 @@ struct LoginView: View {
                     .padding(.trailing, -100)
             }
         }
+        .alert(isPresented: $errorAlert) {
+            Alert(title: Text("Error"), message: Text("Credenciales incorrectas"), dismissButton: .default(Text("OK")))
+        }
     }
     
-    func permitirInicio(){
-        if (userName != officialUsername){
-            
-        }else if (userPassword != officalPassword){
-            
+    func permitirInicio() -> Bool {
+        if userData.userName == officialUsername && userData.userPassword == officialPassword {
+            return true
         }else{
-            UserView()
+            errorAlert = true
+            return false
         }
     }
 }

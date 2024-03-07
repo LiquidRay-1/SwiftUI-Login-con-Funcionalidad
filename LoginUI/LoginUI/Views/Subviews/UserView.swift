@@ -10,11 +10,19 @@ import SwiftUI
 struct UserView: View {
     
     @State var isPresented: Bool = false
-    
+    @State var selected = false
     var body: some View {
         VStack{
             Image("gojo")
                 .padding(50)
+                .rotation3DEffect(
+                .degrees(selected ? 360: 0),
+                    axis: (x: 0.0, y: 1.0, z: 0.0)
+                )
+                .onTapGesture {
+                    self.selected.toggle()
+                }
+                .animation(.spring(response: 0.7))
             Button("Username"){
                 isPresented = true
             }

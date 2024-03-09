@@ -11,10 +11,12 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             LoginView()
+                .environmentObject(UserData())
         }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(UserData())
 }

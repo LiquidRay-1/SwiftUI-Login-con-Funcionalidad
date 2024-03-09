@@ -8,21 +8,33 @@
 import SwiftUI
 
 class UserData: ObservableObject{
-    @Published var userName: String = ""
-    @Published var userPassword: String = ""
+    @Published var userName: String {
+        didSet {
+            UserDefaults.standard.set(userName, forKey: "userName")
+        }
+    }
+    @Published var userPassword: String {
+        didSet {
+            UserDefaults.standard.set(userPassword, forKey: "userPassword")
+        }
+    }
+    @Published var userRemember: Bool {
+        didSet {
+            UserDefaults.standard.set(userRemember, forKey: "userRemember")
+        }
+    }
+
+    init() {
+        self.userName = UserDefaults.standard.object(forKey: "userName") as? String ?? ""
+        self.userPassword = UserDefaults.standard.object(forKey: "userPassword") as? String ?? ""
+        self.userRemember = UserDefaults.standard.object(forKey: "userRemember") as? Bool ?? false
+    }
 }
 
 struct LoginView: View {
     
     //Variable de acceso a las propiedades de UserData
-    @StateObject var userData = UserData()
-    
-    //Variables de comprobación de credenciales
-    @State var officialUsername: String = "User"
-    @State var officialPassword: String = "Pass"
-    
-    //Variable de recuerdo de contraseña
-    @State var rememberPassword: Bool = false
+    @EnvironmentObject var userData : UserData
     
     //Variable de verificación de aparición de alert
     @State var errorAlert = false
@@ -60,7 +72,7 @@ struct LoginView: View {
                         
                 
                 HStack{
-                    Toggle(isOn: $rememberPassword) {
+                    Toggle(isOn: $userData.userRemember) {
                         
                     }
                     .frame(width: 50)
@@ -81,7 +93,7 @@ struct LoginView: View {
                 .foregroundStyle(.white)
                 .clipShape(.buttonBorder)
                 .fullScreenCover(isPresented: $isShowingUserView) {
-                    UserView(officialUserName: $officialUsername)
+                    MenuView()
                 }
                 
                 Text("Recuperar Contraseña")
@@ -96,9 +108,12 @@ struct LoginView: View {
     }
     
     func permitirInicio() -> Bool {
-        if userData.userName == officialUsername && userData.userPassword == officialPassword {
+        let correctUserName = UserDefaults.standard.object(forKey: "correctUserName") as? String ?? "user"
+        let correctUserPassword = UserDefaults.standard.object(forKey: "correctUserPassword") as? String ?? "pass"
+
+        if userData.userName == correctUserName && userData.userPassword == correctUserPassword {
             return true
-        }else{
+        } else {
             errorAlert = true
             return false
         }
@@ -106,5 +121,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView().environmentObject(UserData())
+    LoginView()
+        .environmentObject(UserData())
 }

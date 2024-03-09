@@ -9,22 +9,18 @@ import SwiftUI
 
 struct ModalView: View {
     
-    @Binding var isPresented: Bool
-    @Binding var officialUserName: String
+    @EnvironmentObject var userData : UserData
     
     var body: some View {
         ZStack{
             VStack{
-                Text("Usuario: ")
-                Button("Cerrar"){
-                    isPresented = false
-                }
+                Text("Usuario: \(userData.userName)")
             }
         }
     }
 }
 
 #Preview {
-    ModalView(isPresented: .constant(true), officialUserName: .constant("User"))
+    ModalView()
         .environmentObject(UserData())
 }

@@ -11,10 +11,10 @@ struct UserView: View {
     
     @State var isPresented: Bool = false
     @State var selected = false
-    @Binding var officialUserName: String
     
     var body: some View {
         VStack{
+            Text("Pulsame!")
             Image("gojo")
                 .padding(50)
                 .rotation3DEffect(
@@ -29,13 +29,13 @@ struct UserView: View {
                 isPresented = true
             }
         }
-        .sheet(isPresented: $isPresented, onDismiss: { isPresented = false }, content: { ModalView(isPresented: $isPresented, officialUserName: $officialUserName)
+        .sheet(isPresented: $isPresented, onDismiss: { isPresented = false }, content: { ModalView()
             .presentationDetents([.medium])
         })
     }
 }
 
 #Preview {
-    UserView(officialUserName: .constant("User"))
+    UserView()
         .environmentObject(UserData())
 }

@@ -9,23 +9,23 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var rememberPassword = false
-    @Binding var officialUserName: String
+    @EnvironmentObject var userData : UserData
     
     var body: some View {
         Form{
-            Text("Nombre de usuario: \($officialUserName)")
+            Text("Nombre de usuario: \(userData.userName)")
             Section{
                 Text("Nuevo nombre de Usuario:")
-                TextField("Nombre de usuario", text:
-                        .constant(""))
+                TextField("Nombre de usuario", text: $userData.userName, onCommit: {
+                    UserDefaults.standard.set(userData.userName, forKey: "correctUserName")
+                })
                 .frame(width: 200, height: 30)
                 .background(.bar)
                 .clipShape(.buttonBorder)
             }
             Section{
                 HStack{
-                    Toggle(isOn: $rememberPassword) {
+                    Toggle(isOn: $userData.userRemember) {
                         
                     }
                     .frame(width: 50)
@@ -36,16 +36,21 @@ struct SettingsView: View {
                 }
             }
             Text("Nueva contraseña:")
-            TextField("Nueva contraseña", text:
-                    .constant(""))
-                    .frame(width: 200, height: 30)
-                    .background(.bar)
-                    .clipShape(.buttonBorder)
+            TextField("Nueva contraseña", text: $userData.userPassword, onCommit: {
+                UserDefaults.standard.set(userData.userPassword, forKey: "correctUserPassword")
+            })
+            .frame(width: 200, height: 30)
+            .background(.bar)
+            .clipShape(.buttonBorder)
+            Section{
+                Text("Nota: Pulsa intro en tu teclado en cada campo para guardar los cambios.")
+                    .textScale(.secondary)
+            }
         }
     }
 }
 
 #Preview {
-    SettingsView(officialUserName: .constant("User"))
+    SettingsView()
         .environmentObject(UserData())
 }
